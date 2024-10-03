@@ -12,7 +12,7 @@ import io.cucumber.junit.CucumberOptions;
 		,plugin = {"pretty",
                 "html:target/cucumber-reports/cucumber-pretty",
                 "json:target/cucumber-reports/CucumberTestReport.json",
-                "html:target/cucumber-web-Testreports.html",
+                "html:target/cucumber-reports/cucumberWebTestreports.html",
                 "rerun:target/cucumber-reports/rerun.txt"}
 		)									// This shows the additional components in console
 

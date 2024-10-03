@@ -3,6 +3,7 @@ package stepDefinitions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import io.cucumber.java.en.And;
@@ -19,7 +20,6 @@ public class Login {
 	
 	WebDriver driver;
 	
-	//@Test
 	@Given("^when user is on the the internet page$")
 	public void when_user_is_on_the_the_internet_page(){
 		
@@ -31,7 +31,7 @@ public class Login {
 		driver.get("https://the-internet.herokuapp.com/login");
 		
 	}
-	//@Test
+	
 	@When("^title of login page is The Internet$")
 	public void title_of_login_page_is_the_internet(){
 	    
@@ -40,7 +40,7 @@ public class Login {
 		
 		Assert.assertEquals("The Internet", title);
 	}
-	//@Test
+	
 	@Then("^user enters username & password$")
 	public void user_enters_username_password(){
 		
@@ -48,9 +48,9 @@ public class Login {
 	     driver.findElement(By.name("password")).sendKeys("SuperSecretPassword!");
 		
 	}
-	//@Test
-	@And("^user clicks on login button$")
-	public void user_clicks_on_login_button(){
+	
+	@And("^user clicks on login button 1st$")
+	public void user_clicks_on_login_button_1st(){
 	    
 		driver.findElement(By.tagName("button")).click();
 	}
@@ -59,14 +59,15 @@ public class Login {
 	public void user_lands_on_home_page() {
 	    
 		String title2 = driver.getTitle();
-		System.out.println("Landing page title : "+ title2);
 		
+		System.out.println("Landing page title : "+ title2);
 		
 		Assert.assertEquals("The Internet", title2);
 		
-		
 		driver.quit();
 	}
+	
+	
 	
 	
 
