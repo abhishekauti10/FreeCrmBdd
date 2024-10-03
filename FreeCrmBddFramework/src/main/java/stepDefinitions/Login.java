@@ -20,8 +20,8 @@ public class Login {
 	WebDriver driver;
 	
 	//@Test
-	@Given("^when user is on the free crm page$")
-	public void when_user_is_on_the_free_crm_page(){
+	@Given("^when user is on the the internet page$")
+	public void when_user_is_on_the_the_internet_page(){
 		
 		ChromeOptions option=new ChromeOptions();
 		WebDriverManager.chromedriver().setup();
