@@ -15,7 +15,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 
 
-public class Login {
+public class PositiveLogin {
 	
 	WebDriver driver;
 	
