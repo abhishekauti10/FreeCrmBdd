@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -41,8 +40,7 @@ WebDriver driver;
 	@Then("^user login fail with error message at the top$")
 	public void user_login_fail_with_error_message_at_the_top() {
 		
-		String expectedStr1 = "Your username is invalid!\n"
-				+ "×";
+		String expectedStr1 = "Your username is invalid!\n×";
 		
 		WebElement errorMessage = driver.findElement(By.id("flash"));
 
