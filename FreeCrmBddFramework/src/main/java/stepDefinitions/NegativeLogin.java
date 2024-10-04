@@ -26,14 +26,14 @@ WebDriver driver;
 		
 	}
 	
-	@When("^user enters wrong username or password$")
-	public void user_enters_wrong_username_or_password() {
-		driver.findElement(By.name("username")).sendKeys("abhishek");
-	     driver.findElement(By.name("password")).sendKeys("wrongpass");
+	@When("^user enters wrong \"(.*)\" or \"(.*)\"$")
+	public void user_enters_wrong_username_or_passward(String username,String password) {
+		driver.findElement(By.name("username")).sendKeys(username);
+	    driver.findElement(By.name("password")).sendKeys(password);
 	}
 	
-	@And("^user clicks on login button 2nd$")
-	public void user_clicks_on_login_button_2nd() {
+	@And("^user clicks on login button second$")
+	public void user_clicks_on_login_button_second() {
 		driver.findElement(By.tagName("button")).click();
 	}
 	

@@ -4,14 +4,19 @@ Scenario: The Internet initial login
 
 Given when user is on the the internet page
 When title of login page is The Internet
-Then user enters username & password
-And user clicks on login button 1st
+Then user enters "tomsmith" & "SuperSecretPassword"
+And user clicks on login button first	
 Then user lands on home page
 
-Scenario: Invalid/Wrong credentials on login
+Scenario Outline: Invalid/Wrong username on login						
 
 Given when user is on the-internet page
-When user enters wrong username or password
-And user clicks on login button 2nd
+When user enters wrong "<username>" or "<passward>"
+And user clicks on login button second
 Then user login fail with error message at the top
+
+Examples:
+	| username | passward |
+	| qabhiw | SuperSecretPassword |
+	| ivuvvuivi | wrongpass |
 

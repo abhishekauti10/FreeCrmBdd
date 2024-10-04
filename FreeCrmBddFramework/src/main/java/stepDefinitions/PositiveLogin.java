@@ -40,16 +40,16 @@ public class PositiveLogin {
 		Assert.assertEquals("The Internet", title);
 	}
 	
-	@Then("^user enters username & password$")
-	public void user_enters_username_password(){
+	@Then("^user enters \"(.*)\" & \"(.*)\"$")					// Using RegEx
+	public void user_enters_username_password(String username,String password){
 		
-	     driver.findElement(By.name("username")).sendKeys("tomsmith");
-	     driver.findElement(By.name("password")).sendKeys("SuperSecretPassword!");
+	     driver.findElement(By.name("username")).sendKeys(username);
+	     driver.findElement(By.name("password")).sendKeys(password);
 		
 	}
 	
-	@And("^user clicks on login button 1st$")
-	public void user_clicks_on_login_button_1st(){
+	@And("^user clicks on login button first$")
+	public void user_clicks_on_login_button_first(){
 	    
 		driver.findElement(By.tagName("button")).click();
 	}
