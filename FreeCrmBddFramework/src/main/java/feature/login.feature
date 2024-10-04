@@ -1,5 +1,6 @@
 Feature: The Internet login
 
+@RegressionTest
 Scenario: The Internet initial login
 
 Given when user is on the the internet page
@@ -8,6 +9,8 @@ Then user enters "tomsmith" & "SuperSecretPassword"
 And user clicks on login button first	
 Then user lands on home page
 
+
+@RegressionTest @SmokeTest
 Scenario Outline: Invalid/Wrong username on login						
 
 Given when user is on the-internet page
