@@ -13,9 +13,9 @@ import io.cucumber.junit.CucumberOptions;
                 "html:target/cucumber-reports/cucumber-pretty",
                 "json:target/cucumber-reports/CucumberTestReport.json",
                 "html:target/cucumber-reports/cucumberWebTestreports.html",
-                "rerun:target/cucumber-reports/rerun.txt"}
-		)									// This shows the additional components in console
-
+                "rerun:target/cucumber-reports/rerun.txt"}			// This shows the additional components in console
+		,dryRun = false						//True = no actual execution will take place, false = Actual execution will happen
+		)									
 public class TestRunner {
 
 }
