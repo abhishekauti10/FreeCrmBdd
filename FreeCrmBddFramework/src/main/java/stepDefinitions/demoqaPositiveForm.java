@@ -1,6 +1,8 @@
 package stepDefinitions;
 
 
+import java.time.Duration;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -8,27 +10,32 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+
+//import org.openqa.selenium.chrome.ChromeOptions;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+//import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class demoqaPositiveForm {
 
 	WebDriver driver;
 	
-	@Given("^user is on the demoqa form page$")
+	@Given("user is on the demoqa form page")
 	public void user_is_on_the_demoqa_form_page(){
 		
 		ChromeOptions option=new ChromeOptions();
 		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver(option);
+	    driver = new ChromeDriver(option);
+	    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+	    
 		driver.get("https://demoqa.com/automation-practice-form");
 		
 	}
 	
-	@When("^where page title is title is DEMOQA$")
+	@When("where page title is title is DEMOQA")
 	public void where_page_title_is_title_is_DEMOQA(){
 	    
 		String title = driver.getTitle();
@@ -52,7 +59,7 @@ public class demoqaPositiveForm {
 		driver.findElement(By.cssSelector(gender)).click();
 	}
 	
-	@And("^clicks on submit button$")
+	@And("clicks on submit button")
 	public void clicks_on_submit_button() {
 	    
 		//driver.findElement(By.id("submit")).click();
@@ -66,7 +73,7 @@ public class demoqaPositiveForm {
 	}
 	
 
-	@Then("^user will see pop-up containig their submitted info$")
+	@Then("user will see pop-up containig their submitted info")
 	public void user_will_see_pop_up_containig_their_submitted_info() {
 	    
 		String expectedSucsMsg = "Thanks for submitting the form";
