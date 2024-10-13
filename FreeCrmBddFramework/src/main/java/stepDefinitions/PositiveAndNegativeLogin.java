@@ -13,9 +13,6 @@ import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 
-
-
-
 public class PositiveAndNegativeLogin {
 	
 	WebDriver driver;
