@@ -1,4 +1,4 @@
-package stepDefinitions;
+package parallel;
 
 
 import java.time.Duration;
@@ -6,11 +6,15 @@ import java.time.Duration;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import io.cucumber.java.AfterStep;
+import io.cucumber.java.Scenario;
 //import org.openqa.selenium.chrome.ChromeOptions;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -32,7 +36,9 @@ public class demoqaPositiveForm {
 	    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 	    
 		driver.get("https://demoqa.com/automation-practice-form");
+		driver.navigate().refresh();
 		
+		driver.navigate().to("https://demoqa.com/automation-practice-form");
 	}
 	
 	@When("where page title is title is DEMOQA")
@@ -43,8 +49,16 @@ public class demoqaPositiveForm {
 		Assert.assertEquals("DEMOQA", title);
 	}
 	
-	@Then("^user enters the mandatory \"(.*)\", \"(.*)\", \"(.*)\" and \"(.*)\"$")
-	public void user_enters_the_mandatory_and(String fName, String lName, String email, String mobileN) {
+	@Then("user enters the mandatory (.*), (.*), (.*) and (.*)")
+	public void user_enters_the_mandatory_and(String fName, String lName, String email, String mobileN) throws InterruptedException {
+		
+		JavascriptExecutor jse = (JavascriptExecutor) driver;			// Perform SCROLLING
+		
+		jse.executeScript("window.scrollBy(0,400)");
+		
+		Thread.sleep(5000);
+		
+		jse.executeScript("window.scrollBy(0,-100)");
 	    
 		driver.findElement(By.id("firstName")).sendKeys(fName);
 	    driver.findElement(By.id("lastName")).sendKeys(lName);
@@ -53,7 +67,7 @@ public class demoqaPositiveForm {
 	     
 	}
 	
-	@Then("^selects their \"(.*)\"$")
+	@Then("selects their (.*)")
 	public void selects_their(String gender) {
 	    
 		driver.findElement(By.cssSelector(gender)).click();
@@ -86,7 +100,25 @@ public class demoqaPositiveForm {
 		
 		System.out.println("All your details are noted so "+ actualSucsMsg);
 		
-		driver.quit();
+		
+	}
+	
+	
+	
+	@AfterStep
+	public void addScreenshot(Scenario scenario) {
+		
+		if(scenario.isFailed()) {
+		
+			final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+		    scenario.attach(screenshot, "image/png", scenario.getName());
+			
+		   
+		}
+		
+			
+		
+		
 	}
 
 }
