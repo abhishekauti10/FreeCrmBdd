@@ -1,0 +1,43 @@
+JUnit Example: Create another runner class specifically to rerun the failed scenarios:
+
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+import org.junit.runner.RunWith;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+    features = "@target/failed_scenarios.txt",  // Rerun the failed scenarios
+    glue = "stepDefinitions",                  
+    plugin = {
+        "pretty",
+        "html:target/cucumber-reports-rerun.html"  // Rerun report
+    }
+)
+public class FailedTestRunner {
+}
+
+
+
+
+-----------------------------------------------
+
+Create or modify your Cucumber JUnit Runner class to include the rerun plugin.
+
+
+
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+import org.junit.runner.RunWith;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+    features = "src/test/resources/features",   // Path to your feature files
+    glue = "stepDefinitions",                   // Path to your step definitions
+    plugin = {
+        "pretty",                               // Pretty output
+        "html:target/cucumber-reports.html",    // HTML report
+        "rerun:target/failed_scenarios.txt"     // Rerun plugin, logs failed scenarios
+    }
+)
+public class TestRunner {
+}

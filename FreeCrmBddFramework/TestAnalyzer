@@ -1,0 +1,45 @@
+Step 1: Create a Retry Analyzer Class
+
+import org.testng.IRetryAnalyzer;
+import org.testng.ITestResult;
+
+public class RetryAnalyzer implements IRetryAnalyzer {
+    private int retryCount = 0;
+    private static final int maxRetryCount = 2;  // Set the number of retries
+
+    @Override
+    public boolean retry(ITestResult result) {
+        if (retryCount < maxRetryCount) {
+            retryCount++;
+            return true;  // Retry the failed test
+        }
+        return false;  // Do not retry further
+    }
+}
+
+
+
+Step 2: Apply the Retry Analyzer in Your TestNG Test Class
+
+
+import org.testng.annotations.Test;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import org.testng.annotations.DataProvider;
+
+public class TestNGCucumberRunner extends AbstractTestNGCucumberTests {
+
+    @Override
+    @DataProvider(parallel = true)
+    public Object[][] scenarios() {
+        return super.scenarios();
+    }
+
+
+    @Test(retryAnalyzer = RetryAnalyzer.class)  // Apply RetryAnalyzer
+    public void runCucumberTest() {
+        // Your test logic here
+    }
+}
+
+
+

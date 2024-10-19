@@ -3,32 +3,33 @@ package MyHooks;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 
-public class HooksUse {
+public class HooksUse{
 	
-	@Before (order = 1)
+	@Before 
 	public void openDriver(){
 
 		System.out.println("Before method");
 	}
 	
-	@Before (order = 2)
+	@Before 
 	public void GetUrl(){
 
 		System.out.println("URLLLL");
 	}
 	
 	
-	@After (order = 2)
+	@After 
 	public void closeBrowse () {
 		
 		System.out.println("closeddd");
 	}
 	
-	@After (order = 1)
+	@After
 	public void quitBrowser () {
+		
 		
 		System.out.println("After method");
 	}
 	
-	
+
 }

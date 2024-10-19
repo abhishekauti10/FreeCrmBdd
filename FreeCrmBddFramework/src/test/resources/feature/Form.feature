@@ -6,8 +6,8 @@ Scenario Outline: Positive form fillup
 
 Given user is on the demoqa form page
 When where page title is title is DEMOQA
-Then user enters the mandatory "<firstName>", "<lastName>", "<email>" and "<mobileNumber>"
-Then selects their "<gender>"
+Then user enters the mandatory <firstName>, <lastName>, <email> and <mobileNumber>
+Then selects their <gender>
 And clicks on submit button
 Then user will see pop-up containig their submitted info
 

@@ -1,11 +1,15 @@
-package stepDefinitions;
+package parallel;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import io.cucumber.java.AfterStep;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,8 +21,8 @@ public class PositiveAndNegativeLogin {
 	
 	WebDriver driver;
 	
-	@Given("^when user is on the the internet page$")
-	public void when_user_is_on_the_the_internet_page(){
+	@Given("^user is on the the internet page$")
+	public void user_is_on_the_the_internet_page(){
 		
 		ChromeOptions option=new ChromeOptions();
 		WebDriverManager.chromedriver().setup();
@@ -29,6 +33,7 @@ public class PositiveAndNegativeLogin {
 		
 	}
 	
+
 	@When("^title of login page is The Internet$")
 	public void title_of_login_page_is_the_internet(){
 	    
@@ -38,19 +43,22 @@ public class PositiveAndNegativeLogin {
 		Assert.assertEquals("The Internet", title);
 	}
 	
-	@Then("^user enters \"(.*)\" & \"(.*)\"$")					// Using RegEx
-	public void user_enters_username_password(String username,String password){
+
+	@Then("^user enters \"(.*)\" and \"(.*)\"$")					// Using RegEx
+	public void user_enters_username_and_password(String username,String password){
 		
 	     driver.findElement(By.name("username")).sendKeys(username);
 	     driver.findElement(By.name("password")).sendKeys(password);
 		
 	}
 	
+	
 	@And("^user clicks on login button first$")
 	public void user_clicks_on_login_button_first(){
 	    
 		driver.findElement(By.tagName("button")).click();
 	}
+	
 
 	@Then("^user lands on home page$")
 	public void user_lands_on_home_page() {
@@ -64,16 +72,19 @@ public class PositiveAndNegativeLogin {
 		driver.quit();
 	}
 	
-	@When("^user enters wrong \"(.*)\" or \"(.*)\"$")
+	
+	@When("^user enters wrong (.*) or (.*)")
 	public void user_enters_wrong_username_or_passward(String username,String password) {
 		driver.findElement(By.name("username")).sendKeys(username);
 	    driver.findElement(By.name("password")).sendKeys(password);
 	}
 	
+	
 	@And("^user clicks on login button second$")
 	public void user_clicks_on_login_button_second() {
 		driver.findElement(By.tagName("button")).click();
 	}
+	
 	
 	@Then("^user login fail with error message at the top$")
 	public void user_login_fail_with_error_message_at_the_top() {
@@ -89,7 +100,19 @@ public class PositiveAndNegativeLogin {
 		
 		System.out.println("You cannot login as "+ actualStr2);
 		
-		driver.quit();
+		
+		}
+	
+	@AfterStep
+	public void addScreenshot(Scenario scenario) {
+		//if(scenario.isFailed()) {
+		
+			final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+		    scenario.attach(screenshot, "image/png", scenario.getName());
+		    
+		    
+		//}
+		
 	}
 	
 	
